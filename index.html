@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Engineers Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1b263b;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --info: #560bad;
+            --radius: 12px;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/pattern.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .aws-badge {
+            display: inline-block;
+            background-color: #FF9900;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .team-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card .card-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .team-card .card-content {
+            padding: 1.5rem;
+        }
+
+        .team-card .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .team-card .card-content .role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .team-card .card-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .aws-section {
+            background: linear-gradient(135deg, #232f3e, #1b263b);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .aws-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/aws-pattern.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .aws-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .aws-demo {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .aws-demo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .aws-demo p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .s3-object {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .s3-object h4 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .s3-object h4 i {
+            color: #FF9900;
+        }
+
+        .s3-object pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-aws {
+            background: #FF9900;
+            color: #232f3e;
+        }
+
+        .btn-aws:hover {
+            background: #ffac2d;
+            color: #232f3e;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .aws-demo {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            font-weight: 600;
+            color: #666;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cloud Engineering Team</h1>
+            <p class="subtitle">Meet our team of software engineering students specializing in cloud computing and AWS technologies.</p>
+            <div class="aws-badge">
+                <i class="fab fa-aws"></i> AWS Certified Cloud Practitioners
+            </div>
+        </div>
+    </header>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card">
+                    <div class="card-image">
+                        <img src="abdullah.jpg" alt="Abdullah">
+                    </div>
+                    <div class="card-content">
+                        <h3>Abdullah</h3>
+                        <span class="role">Full Stack Developer</span>
+                        <p>Specializes in building end-to-end web applications using modern frameworks, with expertise in both frontend (React.js, Next.js) and backend (Node.js) development, along with cloud deployment on AWS.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card">
+                    <div class="card-image">
+                        <img src="zaighum.jpg" alt="Syed Zaighum Ali">
+                    </div>
+                    <div class="card-content">
+                        <h3>Syed Zaighum Ali</h3>
+                        <span class="role">DevOps Engineer</span>
+                        <p>Expert in CI/CD pipelines, containerization, and infrastructure as code using AWS services.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card">
+                    <div class="card-image">
+                        <img src="abbas.jpg" alt="Abbas Mushtaq">
+                    </div>
+                    <div class="card-content">
+                        <h3>Abbas Mushtaq</h3>
+                        <span class="role">Data Engineer</span>
+                        <p>Focuses on big data solutions using AWS data services like Redshift, Glue, and Athena.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card">
+                    <div class="card-image">
+                        <img src="hasnain.jpg" alt="Hasnain Ali">
+                    </div>
+                    <div class="card-content">
+                        <h3>Hasnain Ali</h3>
+                        <span class="role">Security Specialist</span>
+                        <p>Specializes in cloud security, IAM policies, and compliance standards on AWS.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="aws-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Local Apache Hosting</h2>
+            </div>
+            
+            <div class="aws-demo">
+                <h3>Website Hosted on Kali Linux VM</h3>
+                <p>This website is now hosted locally on an Apache2 web server running in a Kali Linux virtual machine. Here are the technical details:</p>
+                
+                <div class="s3-object">
+                    <h4><i class="fas fa-folder-open"></i> Website Directory Structure</h4>
+                    <pre>/var/www/html/
+├── index.html
+├── abdullah.jpg
+├── zaighum.jpg
+├── abbas.jpg
+└── hasnain.jpg</pre>
+                    
+                    <p>All files are served directly from the VM's Apache web root:</p>
+                    <button class="btn btn-aws" id="showUrlBtn">
+                        <i class="fas fa-link"></i> Show Local Paths
+                    </button>
+                </div>
+                
+                <h3>How It Works</h3>
+                <p>We configured the Apache server with the following settings:</p>
+                <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; opacity: 0.9;">
+                    <li>Enabled Apache2 web server</li>
+                    <li>Set proper file permissions (chmod 755)</li>
+                    <li>Configured VirtualBox NAT port forwarding (Host 8080 → Guest 80)</li>
+                    <li>Tested accessibility from host machine</li>
+                </ul>
+                
+                <button class="btn btn-outline" id="showConfigBtn">
+                    <i class="fas fa-file-code"></i> View Apache Config
+                </button>
+            </div>
+        </div>
+    </section>
+  <!-- Modal for Local Paths -->
+  <div class="modal" id="urlModal">
+    <div class="modal-content">
+        <button class="close-modal" id="closeUrlModal">&times;</button>
+        <h3>Local File Path Structure</h3>
+        <p>All assets are accessed using the following local paths:</p>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="image">Image Example</div>
+            <div class="tab" data-tab="pattern">Pattern Example</div>
+        </div>
+        
+        <div class="tab-content active" id="image-tab">
+            <p>Example image path:</p>
+            <pre>/var/www/html/abdullah.jpg</pre>
+            <p>This image is used for Abdullah's profile card.</p>
+            <img src="abdullah.jpg" alt="Locally Hosted Image" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
+        </div>
+        
+        <div class="tab-content" id="pattern-tab">
+            <p>Example pattern path:</p>
+            <pre>/var/www/html/pattern.png</pre>
+            <p>This pattern is used in the header background with reduced opacity.</p>
+            <div style="background: url('pattern.png'); height: 200px; background-size: cover; border-radius: 8px; margin-top: 1rem;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Apache Config -->
+<div class="modal" id="configModal">
+    <div class="modal-content">
+        <button class="close-modal" id="closeConfigModal">&times;</button>
+        <h3>Apache2 Configuration</h3>
+        <p>Basic Apache configuration for local hosting:</p>
+        <pre># /etc/apache2/sites-available/000-default.conf
+&lt;VirtualHost *:80&gt;
+ServerAdmin webmaster@localhost
+DocumentRoot /var/www/html
+
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;</pre>
+        <p><strong>Key Commands Used:</strong></p>
+        <pre>sudo systemctl start apache2
+sudo systemctl enable apache2
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/</pre>
+        
+        <h4 style="margin-top: 1.5rem;">Port Forwarding</h4>
+        <p>VirtualBox NAT configuration to access from host:</p>
+        <pre>Host Port: 8080 → Guest Port: 80</pre>
+    </div>
+</div>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Team</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>Cloud Engineering Team - Software Engineering Students</p>
+            <p class="copyright">© 2023 All Rights Reserved | This content is hosted on AWS S3 for demonstration purposes</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Update modal functionality for local hosting
+        const showUrlBtn = document.getElementById('showUrlBtn');
+        const showConfigBtn = document.getElementById('showConfigBtn');
+        const urlModal = document.getElementById('urlModal');
+        const configModal = document.getElementById('configModal');
+        const closeUrlModal = document.getElementById('closeUrlModal');
+        const closeConfigModal = document.getElementById('closeConfigModal');
+
+        showUrlBtn.addEventListener('click', () => {
+            urlModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        showConfigBtn.addEventListener('click', () => {
+            configModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeUrlModal.addEventListener('click', () => {
+            urlModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        closeConfigModal.addEventListener('click', () => {
+            configModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside content
+        window.addEventListener('click', (e) => {
+            if (e.target === urlModal) {
+                urlModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === policyModal) {
+                policyModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabName = tab.getAttribute('data-tab');
+                document.getElementById(`${tabName}-tab`).classList.add('active');
+            });
+        });
+
+        // Add floating animation to AWS badge
+        const awsBadge = document.querySelector('.aws-badge');
+        awsBadge.classList.add('floating');
+    </script>
+</body>
+</html>
