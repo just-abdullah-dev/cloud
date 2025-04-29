@@ -553,96 +553,98 @@
     <section class="aws-section">
         <div class="container">
             <div class="section-title">
-                <h2 style="color: white;">Local Apache Hosting</h2>
+                <h2 style="color: white;">Azure Static Web Apps Hosting</h2>
             </div>
             
             <div class="aws-demo">
-                <h3>Website Hosted on Kali Linux VM</h3>
-                <p>This website is now hosted locally on an Apache2 web server running in a Kali Linux virtual machine. Here are the technical details:</p>
+                <h3>Website Deployed to Azure Static Web Apps</h3>
+                <p>This static website is now hosted on Microsoft Azure's Static Web Apps service. Technical details:</p>
                 
                 <div class="s3-object">
-                    <h4><i class="fas fa-folder-open"></i> Website Directory Structure</h4>
-                    <pre>/var/www/html/
-├── index.html
-├── abdullah.jpg
-├── zaighum.jpg
-├── abbas.jpg
-└── hasnain.jpg</pre>
+                    <h4><i class="fas fa-cloud"></i> Deployment Structure</h4>
+                    <pre>/
+    ├── index.html
+    ├── abdullah.jpg
+    ├── zaighum.jpg
+    ├── abbas.jpg
+    └── hasnain.jpg</pre>
                     
-                    <p>All files are served directly from the VM's Apache web root:</p>
+                    <p>Files are automatically deployed from GitHub and served via Azure's global CDN:</p>
                     <button class="btn btn-aws" id="showUrlBtn">
-                        <i class="fas fa-link"></i> Show Local Paths
+                        <i class="fas fa-link"></i> Show Azure URLs
                     </button>
                 </div>
                 
-                <h3>How It Works</h3>
-                <p>We configured the Apache server with the following settings:</p>
+                <h3>Deployment Process</h3>
+                <p>We configured the deployment with these steps:</p>
                 <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; opacity: 0.9;">
-                    <li>Enabled Apache2 web server</li>
-                    <li>Set proper file permissions (chmod 755)</li>
-                    <li>Configured VirtualBox NAT port forwarding (Host 8080 → Guest 80)</li>
-                    <li>Tested accessibility from host machine</li>
+                    <li>Created Azure Static Web App resource</li>
+                    <li>Connected GitHub repository</li>
+                    <li>Automatic CI/CD pipeline</li>
+                    <li>HTTPS enabled by default</li>
+                    <li>Global content delivery network</li>
                 </ul>
                 
                 <button class="btn btn-outline" id="showConfigBtn">
-                    <i class="fas fa-file-code"></i> View Apache Config
+                    <i class="fas fa-file-code"></i> View Deployment Config
                 </button>
             </div>
         </div>
     </section>
-  <!-- Modal for Local Paths -->
-  <div class="modal" id="urlModal">
-    <div class="modal-content">
-        <button class="close-modal" id="closeUrlModal">&times;</button>
-        <h3>Local File Path Structure</h3>
-        <p>All assets are accessed using the following local paths:</p>
-        
-        <div class="tabs">
-            <div class="tab active" data-tab="image">Image Example</div>
-            <div class="tab" data-tab="pattern">Pattern Example</div>
-        </div>
-        
-        <div class="tab-content active" id="image-tab">
-            <p>Example image path:</p>
-            <pre>/var/www/html/abdullah.jpg</pre>
-            <p>This image is used for Abdullah's profile card.</p>
-            <img src="abdullah.jpg" alt="Locally Hosted Image" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
-        </div>
-        
-        <div class="tab-content" id="pattern-tab">
-            <p>Example pattern path:</p>
-            <pre>/var/www/html/pattern.png</pre>
-            <p>This pattern is used in the header background with reduced opacity.</p>
-            <div style="background: url('pattern.png'); height: 200px; background-size: cover; border-radius: 8px; margin-top: 1rem;"></div>
+    
+    <!-- Modal for Azure URLs -->
+    <div class="modal" id="urlModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeUrlModal">&times;</button>
+            <h3>Azure Static Web App URLs</h3>
+            <p>Assets are served via these public endpoints:</p>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="image">Image Example</div>
+                <div class="tab" data-tab="pattern">Pattern Example</div>
+            </div>
+            
+            <div class="tab-content active" id="image-tab">
+                <p>Image URL example:</p>
+                <pre>https://[your-app-name].azurestaticapps.net/abdullah.jpg</pre>
+                <p>This image is delivered via Azure's global infrastructure.</p>
+                <img src="abdullah.jpg" alt="Azure Hosted Image" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
+            </div>
+            
+            <div class="tab-content" id="pattern-tab">
+                <p>Pattern URL example:</p>
+                <pre>https://[your-app-name].azurestaticapps.net/pattern.png</pre>
+                <p>This pattern benefits from Azure's CDN caching.</p>
+                <div style="background: url('pattern.png'); height: 200px; background-size: cover; border-radius: 8px; margin-top: 1rem;"></div>
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Modal for Apache Config -->
-<div class="modal" id="configModal">
-    <div class="modal-content">
-        <button class="close-modal" id="closeConfigModal">&times;</button>
-        <h3>Apache2 Configuration</h3>
-        <p>Basic Apache configuration for local hosting:</p>
-        <pre># /etc/apache2/sites-available/000-default.conf
-&lt;VirtualHost *:80&gt;
-ServerAdmin webmaster@localhost
-DocumentRoot /var/www/html
-
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;/VirtualHost&gt;</pre>
-        <p><strong>Key Commands Used:</strong></p>
-        <pre>sudo systemctl start apache2
-sudo systemctl enable apache2
-sudo chown -R www-data:www-data /var/www/html/
-sudo chmod -R 755 /var/www/html/</pre>
-        
-        <h4 style="margin-top: 1.5rem;">Port Forwarding</h4>
-        <p>VirtualBox NAT configuration to access from host:</p>
-        <pre>Host Port: 8080 → Guest Port: 80</pre>
+    
+    <!-- Modal for Azure Config -->
+    <div class="modal" id="configModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeConfigModal">&times;</button>
+            <h3>Azure Static Web Apps Setup</h3>
+            <p>Basic configuration for Azure deployment:</p>
+            <pre># In GitHub repository
+    /
+    ├── .github/workflows
+    │   └── azure-static-web-apps-[hash].yml (auto-generated)
+    ├── index.html
+    └── assets/</pre>
+            <p><strong>Key Deployment Commands:</strong></p>
+            <pre># Automatic on git push
+    git add .
+    git commit -m "Update site"
+    git push origin main</pre>
+            
+            <h4 style="margin-top: 1.5rem;">Custom Domain</h4>
+            <p>Optional domain configuration:</p>
+            <pre>1. Add custom domain in Azure Portal
+    2. Verify DNS ownership
+    3. Automatic SSL provisioning</pre>
+        </div>
     </div>
-</div>
     <footer>
         <div class="container">
             <div class="footer-links">
